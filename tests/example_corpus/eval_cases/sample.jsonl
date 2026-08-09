@@ -1,0 +1,2 @@
+{"case_id": "connect-create-account", "user_query": "HTTP method and path to create a Connect account", "expected_doc_sections": ["content/connect-postaccounts"], "verdict_from_log": "answered_from_docs"}
+{"case_id": "gap-nonexistent", "user_query": "quantumflux capacitor wiring diagram 8742999 nonexistent", "expected_doc_sections": [], "verdict_from_log": "gap"}
