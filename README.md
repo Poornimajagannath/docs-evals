@@ -15,6 +15,7 @@ Spec: [`docs/content-engine-spec-v3.1.md`](docs/content-engine-spec-v3.1.md)
 | Task A/B | `docs_evals/task_ab.py`, `scripts/run_task_ab.py` | Arm A vs B live-agent trials with optional sandbox calls |
 | Doc store | `docs_evals/doc_store.py` | Search/get over markdown corpora |
 | Stripe Connect task | `docs_evals/tasks/stripe_connect/` | Example task: `POST /v1/accounts` |
+| Judge loop (adaptation) | `docs_evals/judges/`, `scripts/review_ab_traces.py` | Flatten A/B JSON → JSONL; three binary prompt stubs; TPR/TNR |
 
 Consumer repos (**content-bench**, **bench-new**) point these scripts at their own
 `content/`, `gateway-docs/`, and eval-case files.
@@ -41,6 +42,12 @@ python3 scripts/run_task_ab.py \
 STRIPE_TEST_SECRET_KEY=sk_test_... python3 scripts/run_task_ab.py --live
 ```
 
+## Evals-skills loop (adaptation)
+
+On top of the harness, not instead of it. Trace review → three binary judges →
+TPR/TNR. Stubs and commands: [`docs/evals-skills-loop.md`](docs/evals-skills-loop.md).
+Auth-from-docs stays a code arm.
+
 ## Design rules
 
 - **Evidence-only by default** — question eval never blocks PR until a baseline is set.
@@ -51,9 +58,9 @@ STRIPE_TEST_SECRET_KEY=sk_test_... python3 scripts/run_task_ab.py --live
 ## Layout
 
 ```
-docs_evals/          # importable library
+docs_evals/          # importable library (includes judges/ stubs)
 scripts/             # CLI entry points
-tests/example_corpus/      # minimal corpus + eval cases for CI
-reports/             # gitignored output (question eval, A/B reports)
-docs/                # spec v3.1 reference
+tests/example_corpus/      # minimal corpus + eval cases + A/B flatten fixture
+reports/             # gitignored output (question eval, A/B reports, JSONL)
+docs/                # spec v3.1 + evals-skills-loop.md
 ```
