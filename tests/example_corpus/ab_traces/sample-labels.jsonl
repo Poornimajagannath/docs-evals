@@ -1,0 +1,4 @@
+{"human": "Pass", "judge": "Pass", "mode": "faithfulness-to-raw"}
+{"human": "Pass", "judge": "Fail", "mode": "faithfulness-to-raw"}
+{"human": "Fail", "judge": "Fail", "mode": "faithfulness-to-raw"}
+{"human": "Fail", "judge": "Pass", "mode": "faithfulness-to-raw"}

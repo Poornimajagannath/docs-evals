@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-08-09T02:46:41+00:00",
+  "task_id": "create-payment",
+  "target_path": "/pts/v2/payments",
+  "trials": [
+    {
+      "arm": "A",
+      "trial": 1,
+      "gate_pass": false,
+      "steps_to_success": null,
+      "guesses_or_backtracks": 1,
+      "failure_doc_sections": ["payments"],
+      "http_status": null,
+      "endpoint_correct": false,
+      "auth_blocked": false,
+      "extra": {},
+      "steps": [
+        {
+          "step": 0,
+          "action": "search_docs",
+          "detail": {"query": "create payment totalAmount", "hits": ["payments"], "seeded": true},
+          "guess_or_backtrack": false,
+          "doc_sections": ["payments"]
+        },
+        {
+          "step": 1,
+          "action": "give_up",
+          "detail": {"reason": "unparseable model output: {\"id\": \"propose_request\"}"},
+          "guess_or_backtrack": true,
+          "doc_sections": ["payments"]
+        }
+      ],
+      "notes": "unparseable model output: {\"id\": \"propose_request\"}"
+    },
+    {
+      "arm": "B",
+      "trial": 1,
+      "gate_pass": true,
+      "steps_to_success": 1,
+      "guesses_or_backtracks": 0,
+      "failure_doc_sections": [],
+      "http_status": 201,
+      "endpoint_correct": true,
+      "auth_blocked": false,
+      "extra": {"body_has_amount": true},
+      "steps": [
+        {
+          "step": 0,
+          "action": "get_page",
+          "detail": {"id": "sections/payments-processing-basic-auth-ex-rest", "found": true, "seeded": true},
+          "guess_or_backtrack": false,
+          "doc_sections": ["sections/payments-processing-basic-auth-ex-rest"]
+        }
+      ],
+      "notes": "Gate pass status=201"
+    }
+  ]
+}
